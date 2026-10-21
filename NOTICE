@@ -1,9 +1,9 @@
 # NOTICE
 
-Unminify is a standalone browser build of the pretty-print formatter from
-Chrome DevTools.
+Unminify JS is an independent browser build of the pretty-print formatter that
+ships with Chromium.
 
-## Chromium / Chrome DevTools
+## Chromium / DevTools frontend
 
 Parts of this project are derived from the DevTools frontend:
 
@@ -50,7 +50,7 @@ Files carrying the Chromium copyright header:
 
 ## Acorn
 
-`acorn` (npm, ISC License) — JavaScript parser used by the JS formatter.
+`acorn` (npm, MIT License) — JavaScript parser used by the JS formatter.
 https://github.com/acornjs/acorn
 
 ## CodeMirror 5

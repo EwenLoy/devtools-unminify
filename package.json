@@ -14,14 +14,19 @@
     "beautify",
     "pretty-print",
     "formatter",
-    "devtools"
+    "javascript",
+    "json",
+    "css",
+    "html",
+    "offline"
   ],
   "scripts": {
     "dev": "npm run build:standalone && vite",
     "build": "tsc --noEmit && npm run build:standalone && vite build",
     "build:standalone": "node scripts/build-standalone.mjs",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "acorn": "8.16.0",

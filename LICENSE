@@ -23,6 +23,6 @@ SOFTWARE.
 ---
 
 The formatter sources in src/formatter/devtools and src/formatter/shims are
-derived from Chrome DevTools (https://github.com/ChromeDevTools/devtools-frontend)
-and are distributed under the BSD 3-Clause License. See NOTICE for the full
-copyright notice.
+derived from the DevTools frontend
+(https://github.com/ChromeDevTools/devtools-frontend) and are distributed under
+the BSD 3-Clause License. See NOTICE for the full copyright notice.
