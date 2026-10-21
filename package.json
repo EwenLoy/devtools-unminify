@@ -1,0 +1,41 @@
+{
+  "name": "devtools-unminify",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Offline web unminifier for JS, JSON, CSS and HTML, powered by the Chrome DevTools pretty-print formatter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EwenLoy/devtools-unminify.git"
+  },
+  "homepage": "https://ewenloy.github.io/devtools-unminify/",
+  "keywords": [
+    "unminify",
+    "beautify",
+    "pretty-print",
+    "formatter",
+    "devtools"
+  ],
+  "scripts": {
+    "dev": "npm run build:standalone && vite",
+    "build": "tsc --noEmit && npm run build:standalone && vite build",
+    "build:standalone": "node scripts/build-standalone.mjs",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "acorn": "8.16.0",
+    "codemirror": "5.65.21"
+  },
+  "devDependencies": {
+    "@types/codemirror": "^5.60.15",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^26.6.5",
+    "chai": "^5.1.2",
+    "esbuild": "^0.28.2",
+    "jsdom": "^29.1.1",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

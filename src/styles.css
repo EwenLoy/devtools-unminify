@@ -1,0 +1,430 @@
+:root {
+  color-scheme: dark;
+  --bg: #1f1f1f;
+  --bg-elevated: #282828;
+  --bg-input: #1b1b1b;
+  --border: #3c4043;
+  --text: #e8eaed;
+  --muted: #9aa0a6;
+  --accent: #8ab4f8;
+  --accent-contrast: #202124;
+  --error: #f28b82;
+  /* Скроллбары: приглушённые, в тон панелям DevTools */
+  --scrollbar-thumb: #4b4f54;
+  --scrollbar-thumb-hover: #6a7076;
+  --scrollbar-thumb-active: #8b929a;
+  --scrollbar-track: transparent;
+  --mono: "Roboto Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --line-height: 20px;
+  --font-size: 13px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.4 var(--sans);
+  overflow: hidden;
+}
+
+/* ---------- Тулбар ---------- */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  padding: 8px 12px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+}
+
+.brand-name {
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: .2px;
+}
+
+.brand-hint {
+  font: 11px/1 var(--mono);
+  color: var(--muted);
+  padding: 3px 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+select,
+button {
+  font: inherit;
+}
+
+select {
+  background: var(--bg-input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 6px;
+  outline: none;
+}
+
+select:focus-visible,
+button:focus-visible,
+textarea:focus-visible {
+  border-color: var(--accent);
+}
+
+button {
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text);
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background .12s ease, border-color .12s ease;
+}
+
+button:hover:not(:disabled) {
+  background: #333438;
+}
+
+button:disabled {
+  opacity: .55;
+  cursor: default;
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+button.primary:hover:not(:disabled) {
+  background: #aecbfa;
+}
+
+button.ghost {
+  background: transparent;
+}
+
+button.small {
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+kbd {
+  font: 10px/1 var(--mono);
+  border: 1px solid rgba(0, 0, 0, .35);
+  border-radius: 3px;
+  padding: 2px 3px;
+  opacity: .8;
+}
+
+/* ---------- Панели ---------- */
+
+.panes {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  /* --split задаётся из JS (проценты), по умолчанию 50/50 */
+  grid-template-columns: minmax(0, var(--split, 50%)) 7px minmax(0, 1fr);
+  gap: 0;
+}
+
+/* ---------- Разделитель панелей ---------- */
+
+.splitter {
+  position: relative;
+  background: var(--bg-elevated);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  cursor: col-resize;
+  touch-action: none;
+  outline: none;
+  transition: background .12s ease;
+}
+
+.splitter::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 2px;
+  background: #5f6368;
+  transition: background .12s ease;
+}
+
+.splitter:hover,
+.splitter:focus-visible,
+body.resizing .splitter {
+  background: #34363a;
+}
+
+.splitter:hover::after,
+.splitter:focus-visible::after,
+body.resizing .splitter::after {
+  background: var(--accent);
+}
+
+body.resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+
+.pane {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-input);
+}
+
+.pane-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+.pane-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pane-meta {
+  font: 11px/1 var(--mono);
+  color: var(--muted);
+  margin-left: auto;
+}
+
+.pane-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.pane-actions .pane-meta {
+  margin-left: 0;
+}
+
+/* ---------- Редактор с нумерацией строк ---------- */
+
+.editor {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.gutter {
+  flex: none;
+  width: 52px;
+  padding: 8px 8px 8px 0;
+  overflow: hidden;
+  text-align: right;
+  color: #5f6368;
+  background: var(--bg-input);
+  border-right: 1px solid rgba(255, 255, 255, .04);
+  font: var(--font-size)/var(--line-height) var(--mono);
+  white-space: pre;
+  user-select: none;
+}
+
+textarea {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 8px 12px;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: var(--text);
+  font: var(--font-size)/var(--line-height) var(--mono);
+  tab-size: 4;
+  white-space: pre;
+  overflow: auto;
+  /* место под скроллбар зарезервировано всегда — текст не «прыгает» при росте файла */
+  scrollbar-gutter: stable;
+}
+
+textarea::placeholder {
+  color: #6b6f74;
+}
+
+textarea[readonly] {
+  color: #d7dadd;
+}
+
+/* ---------- Скроллбары ---------- */
+
+/* Chrome/Edge/Safari: тонкий ползунок без стрелок, в цветах темы. */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-track:hover {
+  background: rgba(255, 255, 255, .03);
+}
+
+/* Прозрачная рамка + background-clip: ползунок выглядит «пилюлей» с отступом
+   от края — так же аккуратно, как скроллбары в панелях DevTools. */
+::-webkit-scrollbar-thumb {
+  min-height: 40px;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: var(--scrollbar-thumb);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-thumb-active);
+  background-clip: padding-box;
+}
+
+/* Уголок между вертикальным и горизонтальным скроллбаром. */
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox не понимает ::-webkit-scrollbar, ему нужен стандартный API.
+   Условие @supports важно: если в Chrome задать scrollbar-color, он
+   переключится на системные скроллбары и проигнорирует вебкит-псевдоэлементы. */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+}
+
+/* ---------- Статусбар ---------- */
+
+.statusbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 12px;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 26px;
+}
+
+.statusbar .error {
+  color: var(--error);
+}
+
+.muted {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+/* ---------- Тост ---------- */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 44px;
+  transform: translate(-50%, 12px);
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #323639;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .45);
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 900px) {
+  .panes {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, var(--split, 50%)) 7px minmax(0, 1fr);
+  }
+
+  .splitter {
+    cursor: row-resize;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .splitter::after {
+    width: 44px;
+    height: 3px;
+  }
+
+  body.resizing {
+    cursor: row-resize;
+  }
+
+  .controls {
+    margin-left: 0;
+  }
+}
