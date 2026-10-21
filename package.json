@@ -1,14 +1,14 @@
 {
-  "name": "devtools-unminify",
+  "name": "unminify-js",
   "version": "1.0.0",
   "type": "module",
-  "description": "Offline web unminifier for JS, JSON, CSS and HTML, powered by the Chrome DevTools pretty-print formatter",
+  "description": "Offline web unminifier for JavaScript, JSON, CSS and HTML",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EwenLoy/devtools-unminify.git"
+    "url": "git+https://github.com/EwenLoy/unminify-js.git"
   },
-  "homepage": "https://ewenloy.github.io/devtools-unminify/",
+  "homepage": "https://ewenloy.github.io/unminify-js/",
   "keywords": [
     "unminify",
     "beautify",

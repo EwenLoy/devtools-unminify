@@ -14066,7 +14066,7 @@
 
   // src/detect.ts
   var LANGUAGE_LABELS = {
-    auto: "Auto (like DevTools)",
+    auto: "Auto",
     javascript: "JavaScript",
     json: "JSON",
     html: "HTML",

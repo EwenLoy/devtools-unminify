@@ -3,7 +3,7 @@ import {FormattableMediaTypes} from './formatter/devtools/types.js';
 export type SupportedLanguage = 'auto'|'javascript'|'json'|'html'|'css';
 
 export const LANGUAGE_LABELS: Record<SupportedLanguage, string> = {
-  auto: 'Auto (like DevTools)',
+  auto: 'Auto',
   javascript: 'JavaScript',
   json: 'JSON',
   html: 'HTML',
