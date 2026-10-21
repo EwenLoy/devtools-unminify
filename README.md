@@ -12,7 +12,7 @@ HTML**. Работает офлайн: открой `index.html` двойным 
 - Отступ: 2 пробела, 4 пробела (по умолчанию) или таб.
 - Две панели с нумерацией строк и размерами, перетаскиваемый разделитель.
 - Копирование и скачивание результата, `Ctrl`+`Enter` для запуска.
-- Тёмная тема, скроллбары в стиле DevTools.
+- Тёмная тема, аккуратные скроллбары.
 - `unminify-single.html` — вся утилита одним файлом, удобно переслать.
 
 ## Запуск
@@ -41,14 +41,13 @@ npm test
 
 ## Как устроено
 
-Форматтеры лежат в `src/formatter/devtools` (JS/JSON/CSS/HTML + `FormattedContentBuilder`),
-разбор JS идёт через acorn, CSS и HTML — через режимы CodeMirror 5. В `src/formatter/shims`
-небольшие замены внутренних модулей, чтобы код собирался вне дерева DevTools. В
-`src/app.ts` интерфейс, `src/detect.ts` определение языка, `src/standalone.ts` вход
-автономной сборки.
+`src/formatter` — форматтеры для JS, JSON, CSS и HTML: JS разбирается через acorn и
+печатается по потоку токенов, CSS и HTML — через режимы CodeMirror 5. В
+`src/formatter/shims` небольшие замены внутренних модулей, чтобы код собирался как обычный
+браузерный бандл. Интерфейс — `src/app.ts`, определение языка — `src/detect.ts`, вход
+автономной сборки — `src/standalone.ts`.
 
-Тесты: `npm test` — 118 штук, включая официальные тесты форматтеров и прогон собранного
-UI в jsdom по `file://`.
+`npm test` — 118 тестов: форматтеры и прогон собранного UI в jsdom по `file://`.
 
 ## Ограничения
 
@@ -59,5 +58,5 @@ UI в jsdom по `file://`.
 
 ## Лицензия
 
-Код утилиты — [MIT](LICENSE). Форматтер в `src/formatter/devtools` и
-`src/formatter/shims` — BSD-3-Clause, текст в [NOTICE](NOTICE).
+Код утилиты — [MIT](LICENSE). Сторонний код в `src/formatter` — BSD-3-Clause, текст в
+[NOTICE](NOTICE).
