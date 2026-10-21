@@ -1,5 +1,10 @@
 # Unminify
 
+Offline web unminifier for minified **JavaScript, JSON, CSS and HTML**, built on the
+Chrome DevTools formatter — same output as the `{}` Pretty print button.
+
+---
+
 Веб-утилита, которая возвращает читаемый вид минифицированному **JavaScript, JSON, CSS и HTML**.
 Работает целиком в браузере и не требует сервера: достаточно открыть `index.html` двойным
 кликом — ни установки, ни интернета, ни зависимостей в рантайме.
